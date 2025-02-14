@@ -23,18 +23,25 @@ workflows:
       xcode: latest
 
     scripts:
+      - name: Завершаем все процессы Xcode перед очисткой
+        script: |
+          echo "==> Завершаем процессы Xcode и SwiftPM"
+          pkill -9 -f "xcodebuild" || true
+          pkill -9 -f "swift" || true
+          echo "✅ Все процессы Xcode завершены"
+
       - name: Очистка кэша Swift Package Manager
         script: |
-          echo "==> Удаляем кеш Swift Package Manager"
-          rm -rf ~/Library/Caches/org.swift.swiftpm
-          rm -rf ~/Library/Developer/Xcode/DerivedData
-          rm -rf ~/Library/Developer/Xcode/Archives
-          rm -rf ~/Library/Developer/Xcode/Products
-          rm -rf ~/Library/Developer/Xcode/Build
-          echo "==> Кеши удалены"
+          echo "==> Удаляем кеш Swift Package Manager и DerivedData"
+          timeout 30 rm -rf ~/Library/Caches/org.swift.swiftpm || echo "⚠ Не удалось удалить SwiftPM Cache"
+          timeout 30 rm -rf ~/Library/Developer/Xcode/DerivedData || echo "⚠ Не удалось удалить DerivedData"
+          timeout 30 rm -rf ~/Library/Developer/Xcode/Archives || echo "⚠ Не удалось удалить Archives"
+          timeout 30 rm -rf ~/Library/Developer/Xcode/Products || echo "⚠ Не удалось удалить Products"
+          timeout 30 rm -rf ~/Library/Developer/Xcode/Build || echo "⚠ Не удалось удалить Build"
+          echo "✅ Очистка завершена"
 
           echo "==> Пересобираем зависимости Swift Package Manager"
-          xcodebuild -resolvePackageDependencies -scheme "${XCODE_SCHEME}" -project "${XCODE_WORKSPACE}" || echo "⚠ Ошибка при пересборке зависимостей, но продолжаем"
+          timeout 60 xcodebuild -resolvePackageDependencies -scheme "${XCODE_SCHEME}" -project "${XCODE_WORKSPACE}" || echo "⚠ Ошибка при пересборке зависимостей, но продолжаем"
 
       - name: Set up provisioning profiles settings on Xcode project
         script: xcode-project use-profiles
