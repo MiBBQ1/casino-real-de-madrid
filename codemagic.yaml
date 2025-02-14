@@ -25,17 +25,16 @@ workflows:
     scripts:
       - name: Очистка кэша Swift Package Manager
         script: |
-    echo "==> Удаляем кеш Swift Package Manager"
-    rm -rf ~/Library/Caches/org.swift.swiftpm
-    rm -rf ~/Library/Developer/Xcode/DerivedData
-    rm -rf ~/Library/Developer/Xcode/Archives
-    rm -rf ~/Library/Developer/Xcode/Products
-    rm -rf ~/Library/Developer/Xcode/Build
-    echo "==> Кеши удалены"
+          echo "==> Удаляем кеш Swift Package Manager"
+          rm -rf ~/Library/Caches/org.swift.swiftpm
+          rm -rf ~/Library/Developer/Xcode/DerivedData
+          rm -rf ~/Library/Developer/Xcode/Archives
+          rm -rf ~/Library/Developer/Xcode/Products
+          rm -rf ~/Library/Developer/Xcode/Build
+          echo "==> Кеши удалены"
 
-    echo "==> Пересобираем зависимости Swift Package Manager"
-    xcodebuild -resolvePackageDependencies -scheme "${XCODE_SCHEME}" -project "${XCODE_WORKSPACE}" || echo "⚠ Ошибка при пересборке зависимостей, но продолжаем"
-
+          echo "==> Пересобираем зависимости Swift Package Manager"
+          xcodebuild -resolvePackageDependencies -scheme "${XCODE_SCHEME}" -project "${XCODE_WORKSPACE}" || echo "⚠ Ошибка при пересборке зависимостей, но продолжаем"
 
       - name: Set up provisioning profiles settings on Xcode project
         script: xcode-project use-profiles
