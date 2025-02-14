@@ -4,10 +4,7 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m2
     integrations:
-      app_store_connect:
-        api_key: $APP_STORE_API_KEY
-        key_id: $APP_STORE_KEY_ID
-        issuer_id: $APP_STORE_ISSUER_ID
+      app_store_connect: "Casino Real de Madrid"
 
     environment:
       groups:
