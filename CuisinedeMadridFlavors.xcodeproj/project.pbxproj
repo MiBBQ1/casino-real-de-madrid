@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		66B27E302D59FDBB00422668 /* Casino Real de Madrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Casino Real de Madrid.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66B27E302D59FDBB00422668 /* CuisinedeMadridFlavors.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CuisinedeMadridFlavors.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		66B27E422D59FDBD00422668 /* Exceptions for "Casino Real de Madrid" folder in "Casino Real de Madrid" target */ = {
+		66B27E422D59FDBD00422668 /* Exceptions for "Casino Real de Madrid" folder in "CuisinedeMadridFlavors" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 66B27E2F2D59FDBB00422668 /* Casino Real de Madrid */;
+			target = 66B27E2F2D59FDBB00422668 /* CuisinedeMadridFlavors */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -24,7 +24,7 @@
 		66B27E322D59FDBB00422668 /* Casino Real de Madrid */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				66B27E422D59FDBD00422668 /* Exceptions for "Casino Real de Madrid" folder in "Casino Real de Madrid" target */,
+				66B27E422D59FDBD00422668 /* Exceptions for "Casino Real de Madrid" folder in "CuisinedeMadridFlavors" target */,
 			);
 			path = "Casino Real de Madrid";
 			sourceTree = "<group>";
@@ -53,7 +53,7 @@
 		66B27E312D59FDBB00422668 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				66B27E302D59FDBB00422668 /* Casino Real de Madrid.app */,
+				66B27E302D59FDBB00422668 /* CuisinedeMadridFlavors.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,9 +61,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		66B27E2F2D59FDBB00422668 /* Casino Real de Madrid */ = {
+		66B27E2F2D59FDBB00422668 /* CuisinedeMadridFlavors */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66B27E432D59FDBD00422668 /* Build configuration list for PBXNativeTarget "Casino Real de Madrid" */;
+			buildConfigurationList = 66B27E432D59FDBD00422668 /* Build configuration list for PBXNativeTarget "CuisinedeMadridFlavors" */;
 			buildPhases = (
 				66B27E2C2D59FDBB00422668 /* Sources */,
 				66B27E2D2D59FDBB00422668 /* Frameworks */,
@@ -76,11 +76,11 @@
 			fileSystemSynchronizedGroups = (
 				66B27E322D59FDBB00422668 /* Casino Real de Madrid */,
 			);
-			name = "Casino Real de Madrid";
+			name = CuisinedeMadridFlavors;
 			packageProductDependencies = (
 			);
 			productName = "Casino Real de Madrid";
-			productReference = 66B27E302D59FDBB00422668 /* Casino Real de Madrid.app */;
+			productReference = 66B27E302D59FDBB00422668 /* CuisinedeMadridFlavors.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -98,7 +98,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 66B27E2B2D59FDBB00422668 /* Build configuration list for PBXProject "Casino Real de Madrid" */;
+			buildConfigurationList = 66B27E2B2D59FDBB00422668 /* Build configuration list for PBXProject "CuisinedeMadridFlavors" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -112,7 +112,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				66B27E2F2D59FDBB00422668 /* Casino Real de Madrid */,
+				66B27E2F2D59FDBB00422668 /* CuisinedeMadridFlavors */,
 			);
 		};
 /* End PBXProject section */
@@ -328,7 +328,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		66B27E2B2D59FDBB00422668 /* Build configuration list for PBXProject "Casino Real de Madrid" */ = {
+		66B27E2B2D59FDBB00422668 /* Build configuration list for PBXProject "CuisinedeMadridFlavors" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				66B27E462D59FDBD00422668 /* Debug */,
@@ -337,7 +337,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66B27E432D59FDBD00422668 /* Build configuration list for PBXNativeTarget "Casino Real de Madrid" */ = {
+		66B27E432D59FDBD00422668 /* Build configuration list for PBXNativeTarget "CuisinedeMadridFlavors" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				66B27E442D59FDBD00422668 /* Debug */,

@@ -16,8 +16,8 @@ workflows:
 
       vars:
         BUNDLE_ID: "com.cuisineflavor.demadrroman"
-        XCODE_WORKSPACE: "Casino Real de Madrid.xcodeproj"
-        XCODE_SCHEME: "Casino Real de Madrid"
+        XCODE_WORKSPACE: "CuisinedeMadridFlavors.xcodeproj"
+        XCODE_SCHEME: "CuisinedeMadridFlavors"
         APP_STORE_APPLE_ID: 6742020797
 
       xcode: latest
@@ -42,8 +42,8 @@ workflows:
       - name: Build ipa for distribution
         script: | 
           set -o pipefail && xcode-project build-ipa \
-            --project "Casino Real de Madrid.xcodeproj" \
-            --scheme "Casino Real de Madrid" \
+            --project "CuisinedeMadridFlavors.xcodeproj" \
+            --scheme "CuisinedeMadridFlavors" \
             | tee /tmp/xcodebuild.log
 
       - name: Проверяем переменные среды перед публикацией
