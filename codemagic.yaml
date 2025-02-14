@@ -24,7 +24,7 @@ workflows:
 
     scripts:
       - name: Очистка кэша Swift Package Manager
-  script: |
+        script: |
     echo "==> Удаляем кеш Swift Package Manager"
     rm -rf ~/Library/Caches/org.swift.swiftpm
     rm -rf ~/Library/Developer/Xcode/DerivedData
