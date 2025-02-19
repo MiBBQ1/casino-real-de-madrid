@@ -1,0 +1,87 @@
+workflows:
+  ios-native-quick-start:
+    name: iOS Native
+    max_build_duration: 120
+    instance_type: mac_mini_m2
+    integrations:
+      app_store_connect: "Casino Real de Madrid"
+
+    environment:
+      groups:
+        - DEMADRID  # <-- Используем Variable Group с API-ключами
+
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.cuisineflavor.demadrroman
+
+      vars:
+        BUNDLE_ID: "com.cuisineflavor.demadrroman"
+        XCODE_WORKSPACE: "CuisinedeMadridFlavors.xcodeproj"
+        XCODE_SCHEME: "CuisinedeMadridFlavors"
+        APP_STORE_APPLE_ID: 6742020797
+
+      xcode: latest
+
+    scripts:
+      - name: Очистка кэша Swift Package Manager
+        script: |
+          echo "==> Удаляем кеш Swift Package Manager"
+          rm -rf ~/Library/Caches/org.swift.swiftpm
+          rm -rf ~/Library/Developer/Xcode/DerivedData
+          rm -rf ~/Library/Developer/Xcode/Archives
+          rm -rf ~/Library/Developer/Xcode/Products
+          rm -rf ~/Library/Developer/Xcode/Build
+          echo "==> Кеши удалены"
+
+          echo "==> Пересобираем зависимости Swift Package Manager"
+          xcodebuild -resolvePackageDependencies -scheme "${XCODE_SCHEME}" -project "${XCODE_WORKSPACE}" || echo "⚠ Ошибка при пересборке зависимостей, но продолжаем"
+
+      - name: Set up provisioning profiles settings on Xcode project
+        script: xcode-project use-profiles
+
+      - name: Build ipa for distribution
+        script: | 
+          set -o pipefail && xcode-project build-ipa \
+            --project "CuisinedeMadridFlavors.xcodeproj" \
+            --scheme "CuisinedeMadridFlavors" \
+            | tee /tmp/xcodebuild.log
+
+      - name: Проверяем переменные среды перед публикацией
+        script: |
+          set -e  # Остановить выполнение при ошибке
+          echo "==> Проверяем API-ключи в окружении:"
+          env | grep APP_STORE
+
+          if [ -z "$APP_STORE_API_KEY" ] || [ -z "$APP_STORE_KEY_ID" ] || [ -z "$APP_STORE_ISSUER_ID" ]; then
+            echo "🚨 Ошибка: Одна из переменных API отсутствует! Проверьте настройки Codemagic."
+            exit 1
+          else
+            echo "✅ API-ключи найдены!"
+          fi
+
+      - name: Debugging Publishing Step
+        script: |
+          echo "==> Начинаем публикацию в App Store Connect"
+          ls -la build/ios/ipa/
+          echo "==> Отправляем IPA-файл в TestFlight..."
+
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+
+    publishing:
+      email:
+        recipients:
+          - m.shtupun@upstars.com
+        notify:
+          success: true
+          failure: false
+          
+      app_store_connect:
+        api_key: $APP_STORE_API_KEY
+        key_id: $APP_STORE_KEY_ID
+        issuer_id: $APP_STORE_ISSUER_ID
+        submit_to_testflight: true
+        submit_to_app_store: false
